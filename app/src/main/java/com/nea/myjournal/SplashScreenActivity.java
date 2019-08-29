@@ -5,8 +5,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.nea.myjournal.R;
-
 public class SplashScreenActivity extends AppCompatActivity {
 
     private int SLEEP_TIMER = 3;
