@@ -31,17 +31,16 @@ public class JournalActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, journals);
         mListView.setAdapter(adapter);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String journal = ((TextView)view).getText().toString();
-                Toast.makeText(JournalActivity.this, journal, Toast.LENGTH_LONG).show();
-                Log.v("JournalActivity", "In the onItemClickListener!");
-            }
+        mListView.setOnItemClickListener((adapterView, view, i, l) -> {
+            String journal = ((TextView)view).getText().toString();
+            Toast.makeText(JournalActivity.this, journal, Toast.LENGTH_LONG).show();
+            Log.v("JournalActivity", "In the onItemClickListener!");
         });
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
         mLocationTextView.setText("Here is a list of all the journals i have created: " + location);
+        Log.d("JournalActivity","In the onCreate method" );
+
     }
 }
