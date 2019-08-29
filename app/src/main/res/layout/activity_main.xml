@@ -40,7 +40,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find Journal"
         android:id="@+id/locationEditText"
         android:background="@color/colorTextIcons"
         android:layout_marginBottom="10dp"

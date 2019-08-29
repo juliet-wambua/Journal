@@ -31,10 +31,14 @@ public class JournalActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, journals);
         mListView.setAdapter(adapter);
 
-        mListView.setOnItemClickListener((adapterView, view, i, l) -> {
-            String journal = ((TextView)view).getText().toString();
-            Toast.makeText(JournalActivity.this, journal, Toast.LENGTH_LONG).show();
-            Log.v("JournalActivity", "In the onItemClickListener!");
+
+        mListView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String journal = ((TextView)view).getText().toString();
+                Toast.makeText(JournalActivity.this, journal, Toast.LENGTH_LONG).show();
+                Log.v("JournalActivity", "In the onItemClickListener!");
+            }
         });
 
         Intent intent = getIntent();
