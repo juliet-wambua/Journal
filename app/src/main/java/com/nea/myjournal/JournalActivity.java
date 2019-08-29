@@ -43,7 +43,7 @@ public class JournalActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
-        mLocationTextView.setText("Here is a list of all the journals i have created: " + location);
+        mLocationTextView.setText("Here is a list of all the journals i have created: " );
         Log.d("JournalActivity","In the onCreate method" );
 
     }
