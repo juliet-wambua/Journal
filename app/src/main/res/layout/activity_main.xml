@@ -44,7 +44,7 @@
         android:background="@color/colorTextIcons"
         android:layout_marginBottom="10dp"
         android:padding="5dp"
-        android:hint="Enter Zip Code to Get Journal!"
+        android:hint="Enter description to your Journal!"
         android:layout_centerHorizontal="true"/>
 
 
