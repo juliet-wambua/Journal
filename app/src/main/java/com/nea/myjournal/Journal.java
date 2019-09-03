@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Journal {
 
-    private Source source;
+    private String source;
     private String author;
     private String title;
     private String description;
@@ -15,7 +15,7 @@ public class Journal {
     private String content;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public Journal(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
+    public Journal(String source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
         super();
         this.source = source;
         this.author = author;
@@ -27,13 +27,11 @@ public class Journal {
         this.content = content;
     }
 
-    public Source getSource() {
+    public String getSource() {
         return source;
     }
 
-    public void setSource(Source source) {
-        this.source = source;
-    }
+    public void setSource(String source) { this.source = source; }
 
     public String getAuthor() {
         return author;

@@ -51,7 +51,7 @@ public class JournalService {
                     String url = journalJSON.getString("url");
                     String urlToImage = journalJSON.getString("urlToImage");
                     String publishedAt = journalJSON.getString("publishedAt");
-                    Journal journal  = new Journal(source, content, author, title, description, url, urlToImage, publishedAt);
+                    Journal journal  = new Journal(source, author, title, description, url, urlToImage, publishedAt, content);
                     journals.add(journal);
                 }
             }

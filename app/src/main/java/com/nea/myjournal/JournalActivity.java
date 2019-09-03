@@ -68,8 +68,6 @@ public class JournalActivity extends AppCompatActivity {
                             Log.d(TAG, "Url: " + journal.getUrl());
                             Log.d(TAG, "UrlToImage: " + journal.getUrlToImage());
                             Log.d(TAG, "PublishedAt: " + journal.getPublishedAt());
-//                            Log.d(TAG, "Address: " + android.text.TextUtils.join(", ", journal.getAddress()));
-//                            Log.d(TAG, "Categories: " + journal.getCategories().toString());
                         }
                     }
                 });
