@@ -1,3 +1,4 @@
+
 package com.nea.myjournal;
 
 import java.util.HashMap;
@@ -5,48 +6,40 @@ import java.util.Map;
 
 public class Journal {
 
-    private String source;
-    private String author;
-    private String title;
+    private String id;
+    private String name;
     private String description;
     private String url;
-    private String urlToImage;
-    private String publishedAt;
-    private String content;
+    private String category;
+    private String language;
+    private String country;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public Journal(String source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
+    public Journal(String id, String name, String description, String url, String category, String language, String country) {
         super();
-        this.source = source;
-        this.author = author;
-        this.title = title;
+        this.id = id;
+        this.name = name;
         this.description = description;
         this.url = url;
-        this.urlToImage = urlToImage;
-        this.publishedAt = publishedAt;
-        this.content = content;
+        this.category = category;
+        this.language = language;
+        this.country = country;
     }
 
-    public String getSource() {
-        return source;
+    public String getId() {
+        return id;
     }
 
-    public void setSource(String source) { this.source = source; }
-
-    public String getAuthor() {
-        return author;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public String getName() {
+        return name;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -65,28 +58,28 @@ public class Journal {
         this.url = url;
     }
 
-    public String getUrlToImage() {
-        return urlToImage;
+    public String getCategory() {
+        return category;
     }
 
-    public void setUrlToImage(String urlToImage) {
-        this.urlToImage = urlToImage;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getPublishedAt() {
-        return publishedAt;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setPublishedAt(String publishedAt) {
-        this.publishedAt = publishedAt;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public String getContent() {
-        return content;
+    public String getCountry() {
+        return country;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public Map<String, Object> getAdditionalProperties() {
@@ -96,6 +89,5 @@ public class Journal {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-
 
 }

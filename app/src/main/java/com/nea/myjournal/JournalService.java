@@ -37,21 +37,20 @@ public class JournalService {
     public ArrayList<Journal> processResults(Response response) {
         ArrayList<Journal> journals = new ArrayList<>();
         try {
-            String xmlData = response.body().string();
-            JSONObject userJSON = new JSONObject(xmlData);
-            JSONArray journalsJSON = userJSON.getJSONArray("journals");
+            String jsonData = response.body().string();
+            JSONObject userJSON = new JSONObject(jsonData);
+            JSONArray journalsJSON = userJSON.getJSONArray("sources");
             if (response.isSuccessful()) {
                 for (int i = 0; i < journalsJSON.length(); i++) {
                     JSONObject journalJSON = journalsJSON.getJSONObject(i);
-                    String source = journalJSON.getString("source");
-                    String content = journalJSON.getString("content");
-                    String author = journalJSON.optString("author");
-                    String title = journalJSON.getString("title");
+                    String id = journalJSON.getString("id");
+                    String name = journalJSON.getString("name");
                     String description = journalJSON.getString("description");
                     String url = journalJSON.getString("url");
-                    String urlToImage = journalJSON.getString("urlToImage");
-                    String publishedAt = journalJSON.getString("publishedAt");
-                    Journal journal  = new Journal(source, author, title, description, url, urlToImage, publishedAt, content);
+                    String category = journalJSON.getString("category");
+                    String language = journalJSON.getString("language");
+                    String country = journalJSON.getString("country");
+                    Journal journal  = new Journal(id, name, description, url, category, language, country);
                     journals.add(journal);
                 }
             }

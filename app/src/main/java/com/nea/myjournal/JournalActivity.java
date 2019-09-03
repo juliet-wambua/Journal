@@ -31,7 +31,7 @@ public class JournalActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
-        String content = intent.getStringExtra("content");
+        String content = intent.getStringExtra("mimi");
         mContentTextView.setText("Here is a list of all the journals created: " );
         getJournals(content);
 
@@ -55,19 +55,18 @@ public class JournalActivity extends AppCompatActivity {
                     public void run() {
                         String[] journalNames = new String[journals.size()];
                         for (int i = 0; i < journalNames.length; i++) {
-                            journalNames[i] = journals.get(i).getAuthor();
+                            journalNames[i] = journals.get(i).getCategory();
                         }
                         ArrayAdapter adapter = new ArrayAdapter(JournalActivity.this, android.R.layout.simple_list_item_1, journalNames);
                         mListView.setAdapter(adapter);
                         for (Journal journal : journals) {
-                            Log.d(TAG, "Source: " + journal.getSource());
-                            Log.d(TAG, "Content: " + journal.getContent());
-                            Log.d(TAG, "Author: " + journal.getAuthor());
-                            Log.d(TAG, "Title: " + journal.getTitle());
-                            Log.d(TAG, "Description: " + journal.getDescription());
-                            Log.d(TAG, "Url: " + journal.getUrl());
-                            Log.d(TAG, "UrlToImage: " + journal.getUrlToImage());
-                            Log.d(TAG, "PublishedAt: " + journal.getPublishedAt());
+                            Log.d(TAG, "Source: " + journal.getId());
+                            Log.d(TAG, "Content: " + journal.getName());
+                            Log.d(TAG, "Author: " + journal.getDescription());
+                            Log.d(TAG, "Title: " + journal.getUrl());
+                            Log.d(TAG, "Description: " + journal.getCategory());
+                            Log.d(TAG, "Url: " + journal.getLanguage());
+                            Log.d(TAG, "UrlToImage: " + journal.getCountry());
                         }
                     }
                 });
