@@ -15,7 +15,13 @@ This is a simple mobile Journal where one can keep a record of anything he or sh
    * Gradle
    * An IDE - Intellij 
    * Android Studio
+### Set Up & Instructions
 
+   * Clone the repo
+   * Open with Android Studio
+   * Compile gradle build to build project
+   * Setup emulator to view the project
+   * Click run
 
   ## Technologies
    * Android
