@@ -15,9 +15,6 @@ public class Journal {
     private String content;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public Journal(String source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
-    }
-
     public Journal(Source source, String author, String title, String description, String url, String urlToImage, String publishedAt, String content) {
         super();
         this.source = source;
@@ -101,5 +98,6 @@ public class Journal {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
+
 
 }

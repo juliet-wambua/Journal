@@ -37,8 +37,8 @@ public class JournalService {
     public ArrayList<Journal> processResults(Response response) {
         ArrayList<Journal> journals = new ArrayList<>();
         try {
-            String jsonData = response.body().string();
-            JSONObject userJSON = new JSONObject(jsonData);
+            String xmlData = response.body().string();
+            JSONObject userJSON = new JSONObject(xmlData);
             JSONArray journalsJSON = userJSON.getJSONArray("journals");
             if (response.isSuccessful()) {
                 for (int i = 0; i < journalsJSON.length(); i++) {
@@ -51,17 +51,7 @@ public class JournalService {
                     String url = journalJSON.getString("url");
                     String urlToImage = journalJSON.getString("urlToImage");
                     String publishedAt = journalJSON.getString("publishedAt");
-                    ArrayList<String> address = new ArrayList<>();
-                    JSONArray addressJSON = journalJSON.getJSONObject("location").getJSONArray("display_address");
-                    for (int y = 0; y < addressJSON.length(); y++) {
-                        address.add(addressJSON.get(y).toString());
-                    }
-                    ArrayList<String> categories = new ArrayList<>();
-                    JSONArray categoriesJSON = journalJSON.getJSONArray("categories");
-                    for (int y = 0; y < categoriesJSON.length(); y++) {
-                        categories.add(categoriesJSON.getJSONObject(y).getString("title"));
-                    }
-                    Journal journal = new Journal(source, author, title, description, url, urlToImage, publishedAt, content);
+                    Journal journal  = new Journal(source, content, author, title, description, url, urlToImage, publishedAt);
                     journals.add(journal);
                 }
             }

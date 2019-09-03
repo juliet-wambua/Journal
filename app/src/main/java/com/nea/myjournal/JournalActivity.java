@@ -1,17 +1,13 @@
 package com.nea.myjournal;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,60 +19,62 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class JournalActivity extends AppCompatActivity {
-    private static final String TAG = "JournalActivity";
+    public static final String TAG = JournalActivity.class.getSimpleName();
     @BindView(R.id.contentView) TextView mContentTextView;
     @BindView(R.id.listView) ListView mListView;
-    public ArrayList<Journal> mJournals = new ArrayList<>();
-
-    private String[] journals = new String[] {"A trip to Mwanza","First day at Moringa School", "My Love life"};
-    private String[]  About = new String[] {"Tanzania", "Moringa", "Queen of Hearts"};
+    public ArrayList<Journal> journals = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal);
         ButterKnife.bind(this);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, journals);
-        mListView.setAdapter(adapter);
-
-
-        mListView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String journal = ((TextView)view).getText().toString();
-                Toast.makeText(JournalActivity.this, journal, Toast.LENGTH_LONG).show();
-                Log.v("JournalActivity", "In the onItemClickListener!");
-            }
-        });
 
         Intent intent = getIntent();
-        String content = intent.getStringExtra("location");
-        mContentTextView.setText("Here is a list of all the journals i have created: " );
-        Log.d("JournalActivity","In the onCreate method" );
+        String content = intent.getStringExtra("content");
+        mContentTextView.setText("Here is a list of all the journals created: " );
         getJournals(content);
 
     }
     private void getJournals(String content){
         final JournalService journalService = new JournalService();
-        journalService.findJournals(content, new Callback() {
+        JournalService.findJournals(content, new Callback() {
+
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(Call call, IOException e){
                 e.printStackTrace();
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    if (response.isSuccessful()) {
-                        Log.v(TAG, jsonData);
-                        mJournals = journalService.processResults(response);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
 
+                journals = journalService.processResults(response);
+                JournalActivity.this.runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        String[] journalNames = new String[journals.size()];
+                        for (int i = 0; i < journalNames.length; i++) {
+                            journalNames[i] = journals.get(i).getAuthor();
+                        }
+                        ArrayAdapter adapter = new ArrayAdapter(JournalActivity.this, android.R.layout.simple_list_item_1, journalNames);
+                        mListView.setAdapter(adapter);
+                        for (Journal journal : journals) {
+                            Log.d(TAG, "Source: " + journal.getSource());
+                            Log.d(TAG, "Content: " + journal.getContent());
+                            Log.d(TAG, "Author: " + journal.getAuthor());
+                            Log.d(TAG, "Title: " + journal.getTitle());
+                            Log.d(TAG, "Description: " + journal.getDescription());
+                            Log.d(TAG, "Url: " + journal.getUrl());
+                            Log.d(TAG, "UrlToImage: " + journal.getUrlToImage());
+                            Log.d(TAG, "PublishedAt: " + journal.getPublishedAt());
+//                            Log.d(TAG, "Address: " + android.text.TextUtils.join(", ", journal.getAddress()));
+//                            Log.d(TAG, "Categories: " + journal.getCategories().toString());
+                        }
+                    }
+                });
+            }
         });
     }
+
 }
